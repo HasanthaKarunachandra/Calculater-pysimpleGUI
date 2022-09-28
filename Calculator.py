@@ -39,13 +39,13 @@ def numbers_click(event):
                 var['front'].append(event)
         update_display(format_number())
 
-def clear_click(event):
+def clear_click():
         global var
         var['front'].clear()
         var['back'].clear()
         var['decimal'] = False
 
-def n_operation(event):
+def n_operation(event:str):
         global var
         var['operator'] = event
         try:
@@ -74,17 +74,19 @@ while True:
         if event in ['0','1','2','3','4','5','6','7','8','9']:
                 numbers_click(event)
         if event in ['C','CE']:
-                 clear_click(event)
+                clear_click()
+                update_display(0.0)
+                var['result'] = 0.0
         if event in ['+','-','*','/']:
                  n_operation(event)
         if event == '=':
                 calculate_click()
         if event == '.':
-                pass
+                var['decimal'] = True
         if event == '%':
-                pass
+                print(event)
+                update_display(var['result'] / 100.0)
 
-        print(type(event))
-        print(values)
+
 
 
